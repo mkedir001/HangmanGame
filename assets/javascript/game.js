@@ -15,14 +15,15 @@ var wordbank = ["car", "cat", "motor", "bike", "barcelona", "ronaldo" ];
     var counter = 0;
     var space = 0;
     var win = 0;
+    var loss = 0;
     // document.getElementById('currentWord');
-function gameover() {
+// function gameover() {
 
-    if (counter >= wordselected.length){
-      win++;
-      Wins.innerHTML = win;
-    };
-};
+//     if (counter >= wordselected.length){
+//       win++;
+//       WinnerWinner.innerHTML = win;
+//     };
+// };
 
 for (var i = 0; i < wordselected.length; i++){
     progressWord.push("_");
@@ -41,17 +42,80 @@ for (var i = 0; i < wordselected.length; i++){
       if (wordselected.indexOf(userGuess)<=-1){
       alert ("incorrect letter");
       notright.push(userGuess);
-      lives --;
+      lives --; 
       Guessesleft.innerHTML = lives;
       incorrect.innerHTML = notright.join(" ");
+      if (lives <= 0) {
+
+        loss++;
+        LoserLoser.innerHTML = loss;
+        alert("you lose");
+        console.log('end')
+        var wordbank = ["car", "cat", "motor", "bike", "barcelona", "ronaldo" ];
+        wordselected = wordbank[Math.floor(Math.random() * wordbank.length)];
+        progressWord=[];
+
+        for (var i = 0; i < wordselected.length; i++){
+    progressWord.push("_");
+    currentWord.innerHTML = progressWord.join(" ");
+  };
+        // progressWord.push("_")
+        currentWord.innerHTML = progressWord.join(" ");
+        notright=[];
+        incorrect.innerHTML = notright.join(" ")
+        lives=10;
+        Guessesleft.innerHTML = lives;
+
+        console.log('restart')
+      }
+      
     }
+    
+      
+
       console.log(notright);
     for(var i = 0; i<wordselected.length; i++){
       if(wordselected[i]===userGuess){
         progressWord[i]= userGuess;
         counter++;
         currentWord.innerHTML = progressWord.join(' ');
+
+        if (counter >= wordselected.length) {
+
+          win++;
+          WinnerWinner.innerHTML = win;
+          alert ('you win');
+
+        
+        console.log('end')
+        var wordbank = ["car", "cat", "motor", "bike", "barcelona", "ronaldo" ];
+        wordselected = wordbank[Math.floor(Math.random() * wordbank.length)];
+        progressWord=[];
+
+        for (var i = 0; i < wordselected.length; i++){
+    progressWord.push("_");
+    currentWord.innerHTML = progressWord.join(" ");
+
+currentWord.innerHTML = progressWord.join(" ");
+        notright=[];
+        incorrect.innerHTML = notright.join(" ")
+        lives=10;
+        counter=0;
+        Guessesleft.innerHTML = lives;
+
+        console.log('restart')
+
+        } 
+
+
+
+  };
+        // progressWord.push("_")
+        
+
       };
+
+      
 
 
 
